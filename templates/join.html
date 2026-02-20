@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Join &mdash; {{title}}</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body class="join">
+  <header>
+    <h1>Join this hub</h1>
+    <p>Three steps. Takes about a minute.</p>
+  </header>
+
+  <main>
+    <ol>
+      <li>
+        <h2>Add this tag to your site's &lt;head&gt;</h2>
+        <pre><code id="link-tag">&lt;link rel="subnet" href="{{hubUrl}}"&gt;</code></pre>
+        <button class="copy-btn" data-target="link-tag" aria-label="Copy link tag">Copy</button>
+      </li>
+
+      <li>
+        <h2>Add yourself to the nodes list</h2>
+        <p><a href="{{editUrl}}">Edit subnet.json</a> and add your entry to the <code>nodes</code> array:</p>
+        <pre><code id="node-json">{
+  "url": "https://yoursite.com",
+  "name": "Your Name",
+  "feed": "https://yoursite.com/feed.xml"
+}</code></pre>
+        <button class="copy-btn" data-target="node-json" aria-label="Copy node JSON">Copy</button>
+      </li>
+
+      <li>
+        <h2>Add the widget to your site (optional)</h2>
+        <p>Drop this snippet anywhere on your site to show recent posts from the hub:</p>
+        <pre><code id="widget-code">&lt;script src="{{hubUrl}}/widget.js" async&gt;&lt;/script&gt;
+&lt;subnet-widget hubs="{{hubUrl}}" count="5" display="feed"&gt;
+  &lt;noscript&gt;&lt;a href="{{hubUrl}}"&gt;Subnet&lt;/a&gt;&lt;/noscript&gt;
+&lt;/subnet-widget&gt;</code></pre>
+        <button class="copy-btn" data-target="widget-code" aria-label="Copy widget snippet">Copy</button>
+        <p>The widget renders semantic HTML inside a Shadow DOM (<code>section</code>, <code>h2</code>, <code>ul</code>, <code>li</code>, <code>time</code>, <code>nav</code>). Style it from your own CSS with custom properties:</p>
+        <pre><code id="css-snippet">subnet-widget {
+  --subnet-fg: #333;
+  --subnet-bg: #fafafa;
+  --subnet-border: #e0e0e0;
+  --subnet-radius: 6px;
+  --subnet-padding: 1rem;
+  --subnet-link: #0055aa;
+  --subnet-font-size: 0.9em;
+}</code></pre>
+        <button class="copy-btn" data-target="css-snippet" aria-label="Copy CSS snippet">Copy</button>
+      </li>
+    </ol>
+
+    <p>Once a member approves your PR and the link tag is live, you'll appear on the hub automatically.</p>
+  </main>
+
+  <footer>
+    <nav aria-label="Return navigation">
+      <a href="./">&larr; Back to hub</a>
+    </nav>
+  </footer>
+
+  <script>
+    document.querySelectorAll(".copy-btn[data-target]").forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        var el = document.getElementById(btn.getAttribute("data-target"));
+        if (el && navigator.clipboard) {
+          navigator.clipboard.writeText(el.textContent).then(function () {
+            var original = btn.textContent;
+            btn.textContent = "Copied!";
+            btn.classList.add("copied");
+            setTimeout(function () {
+              btn.textContent = original;
+              btn.classList.remove("copied");
+            }, 2000);
+          });
+        }
+      });
+    });
+  </script>
+</body>
+</html>

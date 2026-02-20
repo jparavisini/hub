@@ -1,0 +1,33 @@
+{
+  "name": "subnet-hub",
+  "version": "1.0.0",
+  "description": "Reference implementation of the subnet protocol — an open standard for trusted networks of personal websites",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node src/build.js",
+    "verify": "node src/verify.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jparavisini/subnet.git"
+  },
+  "keywords": [
+    "subnet",
+    "webring",
+    "atom-feed",
+    "rss",
+    "personal-website",
+    "indieweb",
+    "static-site-generator"
+  ],
+  "author": "Joe Paravisini",
+  "license": "MPL-2.0",
+  "bugs": {
+    "url": "https://github.com/jparavisini/subnet/issues"
+  },
+  "homepage": "https://github.com/jparavisini/subnet#readme",
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

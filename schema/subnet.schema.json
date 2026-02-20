@@ -1,0 +1,92 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "subnet.schema.json",
+  "title": "subnet",
+  "description": "Schema for subnet.json — the registry file for a subnet hub.",
+  "type": "object",
+  "required": ["subnet", "nodes"],
+  "additionalProperties": false,
+  "properties": {
+    "subnet": {
+      "type": "object",
+      "required": ["version", "hub", "handshakes_required"],
+      "additionalProperties": false,
+      "properties": {
+        "version": {
+          "type": "string",
+          "const": "1.0",
+          "description": "Spec version. Hubs should ignore fields they don't recognize from newer versions."
+        },
+        "name": {
+          "type": "string",
+          "pattern": "^[a-z0-9][a-z0-9-]*[a-z0-9]$",
+          "description": "Optional URL-safe slug. Hub URL is the canonical identifier."
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Optional human-readable name. Shows in the hub page heading, Atom feed title, and OPML title."
+        },
+        "description": {
+          "type": "string",
+          "description": "Optional short description. Shows below the title on the hub page and as the Atom feed subtitle."
+        },
+        "hub": {
+          "type": "string",
+          "format": "uri",
+          "description": "Public URL of the hub."
+        },
+        "handshakes_required": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "Number of existing-node approvals needed to join."
+        }
+      }
+    },
+    "nodes": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["url", "name", "feed"],
+        "additionalProperties": false,
+        "properties": {
+          "url": {
+            "type": "string",
+            "format": "uri",
+            "description": "Canonical URL of the node's website."
+          },
+          "name": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Display name of the node."
+          },
+          "feed": {
+            "type": "string",
+            "format": "uri",
+            "description": "URL of the node's RSS or Atom feed."
+          }
+        }
+      }
+    },
+    "peers": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["name", "hub"],
+        "additionalProperties": false,
+        "properties": {
+          "name": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Name of the peer subnet."
+          },
+          "hub": {
+            "type": "string",
+            "format": "uri",
+            "description": "Hub URL of the peer subnet."
+          }
+        }
+      }
+    }
+  }
+}

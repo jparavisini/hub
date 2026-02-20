@@ -1,0 +1,15 @@
+{
+  "subnet": {
+    "version": "1.0",
+    "hub": "https://jparavisini.github.io/subnet",
+    "handshakes_required": 1
+  },
+  "nodes": [
+    {
+      "url": "https://joeparavisini.com",
+      "name": "Joe Paravisini",
+      "feed": "https://joeparavisini.com/writing/rss/"
+    }
+  ],
+  "peers": []
+}

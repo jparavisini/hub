@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{title}}</title>
+  <link rel="subnet" href="{{hubUrl}}">
+  <link rel="alternate" type="application/atom+xml" title="{{title}}" href="feed.xml">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>{{title}}</h1>{{description}}
+    <p>A <a href="{{repoUrl}}">subnet</a> is a small community of personal websites. Members vouch for each other, and posts flow between sites. <a href="{{repoUrl}}#readme">Learn more</a></p>
+  </header>
+
+  <main>
+
+    <section>
+      <h2>Recent Posts</h2>
+      <ul>
+{{postList}}
+      </ul>
+    </section>
+
+    <section>
+      <h2>Nodes</h2>
+      <ul>
+{{nodeList}}
+      </ul>
+    </section>
+{{peerSection}}
+  </main>
+
+  <footer>
+    <nav aria-label="Hub navigation">
+      <ul>
+        <li><a href="join">Join this hub</a></li>
+        <li><a href="feed.xml">Atom Feed</a></li>
+        <li><a href="subnet.opml">OPML</a></li>
+        <li><a href="subnet.json">subnet.json</a></li>
+      </ul>
+    </nav>
+  </footer>
+</body>
+</html>
